@@ -1,3 +1,5 @@
+//déclaration des variables et Mettre les données Teddy de l'Api dans des variables
+
 let produitName = "";
 let _id = "";
 let description = "";
@@ -10,14 +12,14 @@ let structureTeddies = "";
 //Récupération de la chaine de requêtte dans l'url
 const queryString_url_id = window.location.search;
 
-//méthode 1 pour extraire juste l'id
+// Pour extraire juste l'id
 const urlSearchParams = new URLSearchParams(queryString_url_id);
 console.log(urlSearchParams);
 const id = urlSearchParams.get("id");
 console.log(id);
 
 
-
+//Récupération des valeurs d'un id
 
 const Promise2 = fetch("http://localhost:3000/api/teddies/"+id); 
   Promise2.then((response) => {
@@ -25,26 +27,36 @@ const Promise2 = fetch("http://localhost:3000/api/teddies/"+id);
 
     const teddiesId = response.json();
 
-   console.log(teddiesId);
-
-    
-
-  teddiesId.then((utileId) =>{
+  
+    teddiesId.then((utileId) =>{
     console.log(utileId);
+
+    //Déclaration  des valeurs  id 
+
     produitName = utileId? utileId.name:"";
     description = utileId? utileId.description:"";
     imageUrl = utileId? utileId.imageUrl:"";
     price = utileId? utileId.price:"";
-    const structureProduit2 = ` 
+    colors = utileId? utileId.colors:[""];
+    console.log(colors);
+
+    //selection de la classe pour injecter le code html
+
+const positionElement2 = document.querySelector(".container-page-teddies");
+console.log(positionElement2);
+ 
+//la structure html pour l'affichage du produit séléctionné
+
+const structureProduit2 = ` 
     <div class="row">
             <div class="col-xl-12 col-md-12">
-                <h2 class="h6 d-flex flex-wrap justify-content-between align-items-center px-4 py-3 bg-secondary"><span>Products</span><a class="font-size-sm" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left" style="width: 1rem; height: 1rem;"><polyline points="15 18 9 12 15 6"></polyline></svg>Continue shopping</a></h2>
+                <h2 class="h6 d-flex flex-wrap justify-content-between align-items-center px-4 py-3 bg-secondary"><span>Produit</span><a class="font-size-sm" href="index.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left" style="width: 1rem; height: 1rem;"><polyline points="15 18 9 12 15 6"></polyline></svg>Continuez votre Achat</a></h2>
                 <!-- Item-->
                 <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
                     <div class="media d-block d-sm-flex text-center text-sm-left">
                         <a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img src="${imageUrl}" alt="Product"></a>
                         <div class="media-body pt-3">
-                            <h3 class="product-card-title font-weight-semibold border-0 pb-0"><a href="#">${produitName}</a></h3>
+                            <h3 class="product-card-title font-weight-semibold border-0 pb-0">Nom : <span class="text-muted mr-2"><a href="#">${produitName}</span></a></h3>
                             <div class="font-size-sm">id : <span class="text-muted mr-2">${id}</span></div>
                             <div class="font-size-sm">Description : <span class="text-muted mr-2">${description}</span></div>
                             <div class="font-size-lg text-primary pt-2">Prix : <span class="text-muted mr-2">${price/100}€</span></div>
@@ -55,9 +67,18 @@ const Promise2 = fetch("http://localhost:3000/api/teddies/"+id);
                             <label for="quantity1">Quantité</label>
                             <input class="form-control form-control-sm" type="number" id="quantity1" value="1">
                         </div>
+                        <form>
+                    <div class="form-row align-items-center">
+                    <div class="col-auto my-1">
+                        <label class="mr-sm-2" for="inlineFormCustomSelect">Préférence</label>
+                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                           
+                        </select>
+                        </div>
                         
-                        <button class="btn btn-outline-primary btn-sm btn-block mb-2" type="button">
-                           Commander</button></a>
+                    </div>
+                    </form>
+                        
                         <button class="btn btn-outline-success btn-sm btn-block mb-2" type="button">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 mr-1">
                                 <polyline points="3 6 5 6 21 6"></polyline>
@@ -73,27 +94,68 @@ const Promise2 = fetch("http://localhost:3000/api/teddies/"+id);
           `
           ;
 
-    //injection html dans la page produit
+    //injection  dans la page produit.html
 positionElement2.innerHTML = structureProduit2;
 
+  //injection  dans la page produit.html pour les options Couleurs
+ const positionChoixCouleur = document.querySelector("#inlineFormCustomSelect ");
+ console.log(positionChoixCouleur); 
+
+// =================== La Gestion du panier =======================
+
+// La récupérration des données séléctionnées par l'utilisateur et envoi du panie
+
+let structureOptions = [];
+//La boucle for pour afficher toutes les options de couleur
+for (let j = 0; j < colors.length; j++){
+    structureOptions = structureOptions +
+    `
     
+    <option value="${j}">${colors[j]}</option>
+                            
+    `;
+}
+
+ //injection  dans la page produit.html
+ positionChoixCouleur.innerHTML = structureOptions;
+
+console.log(structureOptions);
+//Séléction de l'id du formulaire
+const idForm = document.querySelector("#inlineFormCustomSelect");
+
+
+//Mettre le choix de l'utilisateur dans une variable
+const choixForm = idForm.value="";
+
+
+//Séléction du botton Ajouter au Panier
+
+const btn_envoyerPanier = document.querySelector(".btn-outline-success");
+console.log(btn_envoyerPanier);
+
+//Ecouter le botton et envoyer le Panier
+btn_envoyerPanier.addEventListener("click",(event) =>{
+event.preventDefault();
+
+//Récupération des valeurs du formulaire
+let optionsProduit = {
+
+}
+
+
+});
+
+
+
+
 
     })
 
     
- })
-//déclaration des variables et Mettre les données Teddy de l'Api dans des variables
+})
 
 
-
-//selection de la classe pour injecter le code html
-
-
-
-const positionElement2 = document.querySelector(".container-page-teddies");
-console.log(positionElement2);
-//<a href="./produit.html?id=${_id[i]}">
-//la structure html pour l'affichage du produit séléctionné
+//<option selected>Choisir...</option>
 
 
 
