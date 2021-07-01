@@ -14,9 +14,9 @@ const queryString_url_id = window.location.search;
 
 // Pour extraire juste l'id
 const urlSearchParams = new URLSearchParams(queryString_url_id);
-console.log(urlSearchParams);
+
 const id = urlSearchParams.get("id");
-console.log(id);
+
 
 
 //Récupération des valeurs d'un id
@@ -43,7 +43,7 @@ const Promise2 = fetch("http://localhost:3000/api/teddies/"+id);
     //selection de la classe pour injecter le code html
 
 const positionElement2 = document.querySelector(".container-page-teddies");
-console.log(positionElement2);
+
  
 //la structure html pour l'affichage du produit séléctionné
 
@@ -57,8 +57,8 @@ const structureProduit2 = `
                         <a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img src="${imageUrl}" alt="Product"></a>
                         <div class="media-body pt-3">
                             <h3 class="product-card-title font-weight-semibold border-0 pb-0">Nom : <span class="text-muted mr-2"><a href="#">${produitName}</span></a></h3>
-                            <div class="font-size-sm">id : <span class="text-muted mr-2">${id}</span></div>
-                            <div class="font-size-sm">Description : <span class="text-muted mr-2">${description}</span></div>
+                            <div class="font-size-sm font-weight-semibold">id : <span class="text-muted mr-2">${id}</span></div>
+                            <div class="font-size-sm font-weight-semibold">Description : <span class="text-muted mr-2">${description}</span></div>
                             <div class="font-size-lg text-primary pt-2">Prix : <span class="text-muted mr-2">${price/100}€</span></div>
                         </div>
                     </div>
@@ -97,15 +97,22 @@ const structureProduit2 = `
     //injection  dans la page produit.html
 positionElement2.innerHTML = structureProduit2;
 
-  //injection  dans la page produit.html pour les options Couleurs
- const positionChoixCouleur = document.querySelector("#inlineFormCustomSelect ");
- console.log(positionChoixCouleur); 
+  
+ 
 
 // =================== La Gestion du panier =======================
 
 // La récupérration des données séléctionnées par l'utilisateur et envoi du panie
 
+
+//Séléction du botton Ajouter au Panier
+
+//injection  dans la page produit.html pour les options Couleurs
+
+
+
 let structureOptions = [];
+
 //La boucle for pour afficher toutes les options de couleur
 for (let j = 0; j < colors.length; j++){
     structureOptions = structureOptions +
@@ -116,31 +123,41 @@ for (let j = 0; j < colors.length; j++){
     `;
 }
 
- //injection  dans la page produit.html
+
+//injection  dans la page produit.html
+ const positionChoixCouleur = document.querySelector("#inlineFormCustomSelect ");
  positionChoixCouleur.innerHTML = structureOptions;
+ console.log(positionChoixCouleur);
 
-console.log(structureOptions);
-//Séléction de l'id du formulaire
-const idForm = document.querySelector("#inlineFormCustomSelect");
-
-
-//Mettre le choix de l'utilisateur dans une variable
-const choixForm = idForm.value="";
+ //Séléction de l'id du formulaire
+const idForm = positionChoixCouleur.value;
+console.log(idForm);
 
 
-//Séléction du botton Ajouter au Panier
-
-const btn_envoyerPanier = document.querySelector(".btn-outline-success");
-console.log(btn_envoyerPanier);
+ 
+ const btn_envoyerPanier = document.querySelector(".btn-outline-success");
+ console.log(btn_envoyerPanier);
 
 //Ecouter le botton et envoyer le Panier
 btn_envoyerPanier.addEventListener("click",(event) =>{
-event.preventDefault();
+ event.preventDefault();
+ 
+//Mettre le choix de l'utilisateur dans une variable
+const choixForm = idForm.value="";
+console.log(choixForm );
+
 
 //Récupération des valeurs du formulaire
 let optionsProduit = {
+    produitName : utileId.name,
+    description : utileId.description,
+    imageUrl :utileId.imageUrl,
+    colors :choixForm.colors,
+    price : utileId.price /100,
+};    
+    console.log(optionsProduit);
+    
 
-}
 
 
 });
