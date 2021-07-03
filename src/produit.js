@@ -140,7 +140,7 @@ for (let j = 0; j < colors.length; j++){
     structureOptions = structureOptions +
     `
     
-    <option value="${j}">${colors[j]}</option>
+    <option value="${colors[j]}">${colors[j]}</option>
                             
     `;
 }
