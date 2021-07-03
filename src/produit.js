@@ -118,8 +118,6 @@ event.preventDefault();
 
 //Mettre le choix de l'utilisateur dans une variable
 const choixForm = idForm.value; 
-console.log(choixForm);
-
 
 //Récupération des valeurs du formulaire
 let optionsProduit = {
@@ -130,6 +128,35 @@ let optionsProduit = {
     price : utileId.price /100
 }    
     console.log(optionsProduit);
+
+     // ==================================== Local Storage ====================================
+// ==========Stocker la récupération des valeurs du formulaire dans le local storage =====
+ 
+// ====== Déclaration de la variable "produitEnregistreDanslocalStorage" ===========
+
+let produitEnregistreDanslocalStorage = JSON.parse(localStorage.getItem("produit"));
+
+// JSON.parse c'est pour convertir les données au format JSON qui sont dans le localstorage en objet javascript
+
+console.log(produitEnregistreDanslocalStorage);
+
+// s'il a déjà  des produits enregistré dans le local storage
+if(produitEnregistreDanslocalStorage){
+    produitEnregistreDanslocalStorage.push(optionsProduit);
+    localStorage.setItem("produit", JSON.stringify(produitEnregistreDanslocalStorage));
+    console.log(produitEnregistreDanslocalStorage);
+}
+
+// s'il n'y a pas de produit de produit enregistré dans le local storage
+else{
+    produitEnregistreDanslocalStorage = [];
+    produitEnregistreDanslocalStorage.push(optionsProduit);
+    localStorage.setItem("produit", JSON.stringify(produitEnregistreDanslocalStorage));
+    
+    console.log(produitEnregistreDanslocalStorage);
+
+
+}
 
 });
 
@@ -145,21 +172,15 @@ for (let j = 0; j < colors.length; j++){
     `;
 }
 
-console.log(structureOptions);
-
 
 //injection  dans la page produit.html pour le choix de couleur dans le formulaire
 const positionChoixCouleur = document.querySelector("#inlineFormCustomSelect");
-
-
  
  positionChoixCouleur.innerHTML = structureOptions;
+
+console.log(positionChoixCouleur.innerHTML);
+
  
-console.log(structureOptions);
- 
-
-
-
 });
 
 
@@ -167,19 +188,6 @@ console.log(structureOptions);
 })
 
     
-
-
- 
-
-
-
-
-
-
-
-
-
-
 
 
 
