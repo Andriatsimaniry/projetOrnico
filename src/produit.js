@@ -126,7 +126,7 @@ let optionsProduit = {
     produitName : utileId.name,
     description : utileId.description,
     imageUrl :utileId.imageUrl,
-    colors :choixForm.colors,
+    colors :choixForm,
     price : utileId.price /100
 }    
     console.log(optionsProduit);
