@@ -103,3 +103,29 @@ window.location.href ="panier.html";
 });
 
 // ================= Fin bouton pour vider le panier ================
+
+// ======= Le montant total du panier ============
+//Déclaration de la variable pour pouvoir y mettre les prix qui sont présents dans le panier
+let prixTotalCalculer = [];
+
+
+
+//Aller chercher les prix dans le panier
+for(let m=0; m < produitEnregistreDanslocalStorage.length; m++){
+  let prixProduitsDansLePanier = produitEnregistreDanslocalStorage[m].price;
+
+  //Mettre les prix du panier dans la variables "prixTotalCalculer"
+  prixTotalCalculer.push(prixProduitsDansLePanier)
+  console.log(prixTotalCalculer);
+}
+
+//Additionner les prix qu'il y a dans le tableau de la variable "prixTotalucler"
+
+const reducer = (accumulator, currentValue) => accumulator + currentValue;
+const prixTotal = prixTotalCalculer.reduce(reducer,0)+ "€";
+console.log(prixTotal);
+
+//choisr l'element html pour afficher prix total 
+const affichagePrixHtml = document.getElementById("container-montant-total");
+affichagePrixHtml.insertAdjacentHTML("beforeend",prixTotal);
+console.log(affichagePrixHtml);
