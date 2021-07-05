@@ -129,3 +129,124 @@ console.log(prixTotal);
 const affichagePrixHtml = document.getElementById("container-montant-total");
 affichagePrixHtml.insertAdjacentHTML("beforeend",prixTotal);
 console.log(affichagePrixHtml);
+
+// ================================= FIN MONTANT TOTAL PANIER ==============
+
+// ******************** FORMULAIRE DE COMMANDE ***********************
+
+const afficherFormulaire = () => {
+
+//Séléction élément du DOM pour le positionnement du formulaire
+const positionElement4 = document.querySelector("#formulaire-commande-produit");
+
+  const structureFormulaire = `
+  <div class="row">
+  <div class="col-lg-12 col-md-12"> 
+                <div id="formulaire-commande" class="h3 font-weight-semibold text-center py-3">Remplir le Formulaire Pour Commander 
+                </div>
+              </div>
+
+                <div class="container pb-5 mt-n2 mt-md-n3">                
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">     
+                    <div class="panel panel-default">
+                          <div class="form-group">
+                            <label class="col-sm-4 control-label">Prénom</label>
+                            <div class="col-sm-8">
+                              <input id="prenom" type="text" class="form-control">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-12 control-label">Nom</label>
+                            <div class="col-sm-8">
+                              <input id="nom" type="text" class="form-control" required>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-4 control-label">E-mail</label>
+                            <div class="col-sm-8">
+                              <input id="email" type="email" class="form-control" required>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-4 control-label">Téléphone</label>
+                            <div class="col-sm-8">
+                              <input id="telephone" type="tel" class="form-control">
+                            </div>
+                         </div>
+                          <div class="form-group">
+                            <label class="col-sm-4 control-label">Adresse</label>
+                            <div class="col-sm-8">
+                              <textarea  id="adresse" rows="3" class="form-control" required></textarea>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-4 control-label">Ville</label>
+                            <div class="col-sm-8">
+                              <input id="ville" type="text" class="form-control" required>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-4 control-label">Code Postal</label>
+                            <div class="col-sm-8">
+                              <input id="codepostal" type="email" class="form-control">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="col-sm-sm-4 col-sm-2">
+                            <button id = "envoyerFormulaire" type="submit" class="btn btn-primary">Commander</button>
+                          </div>
+                        </div>
+                </div>
+            </div>    
+  `;
+  //Injection HTML
+  positionElement4.insertAdjacentHTML("afterend", structureFormulaire);
+};
+
+//Affichage du formulaire
+afficherFormulaire();
+
+//Séléction du bouton envoyer le formulaire
+const btnEnvoyerFormulaire = document.querySelector("#envoyerFormulaire")
+console.log(btnEnvoyerFormulaire);
+
+
+// ========  addEventListener =============
+btnEnvoyerFormulaire.addEventListener("click", (e)=>{
+  e.preventDefault();
+
+  //Récupération des valeurs du formulaire pour les mettre dans le local storage
+localStorage.setItem("prenom",document.querySelector("#prenom").value);
+localStorage.setItem("nom",document.querySelector("#nom").value);
+localStorage.setItem("email",document.querySelector("#email").value);
+localStorage.setItem("telephone",document.querySelector("#telephone").value);
+localStorage.setItem("adresse",document.querySelector("#adresse").value);
+localStorage.setItem("ville",document.querySelector("#ville").value);
+localStorage.setItem("codepostal",document.querySelector("#codepostal").value);
+
+//Mettre les valeurs du formulaire dans un objet
+
+const formulaire = {
+
+  prenom:localStorage.getItem("prenom"),
+  nom:localStorage.getItem("nom"),
+  email:localStorage.getItem("email"),
+  telephone:localStorage.getItem("telephone"),
+  adresse:localStorage.getItem("adresse"),
+  ville:localStorage.getItem("ville"),
+  codepostal:localStorage.getItem("codepostal")
+}
+console.log(formulaire);
+
+//Mettre les valeurs du formulaire et les produits séléctionnés dans un objet é envoyer vers le serveur
+const tousEnvoyer = {
+  produitEnregistreDanslocalStorage,
+  formulaire
+}
+console.log(tousEnvoyer);
+
+})
+
+
+
