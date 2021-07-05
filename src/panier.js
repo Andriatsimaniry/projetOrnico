@@ -10,8 +10,10 @@ console.log(produitEnregistreDanslocalStorage);
 const positionElement3 = document.querySelector("#container-produits-panier");
 console.log(positionElement3);
 
+//Fonction de rendu Html
+function renduHtml() {
 // Si le panier est vide : afficher le panier est vide
-if(produitEnregistreDanslocalStorage === null){
+if(produitEnregistreDanslocalStorage === null || produitEnregistreDanslocalStorage == 0){
   const panierVide = `
   <div class="row">
   <div class="col-xl-12 col-md-12">
@@ -36,7 +38,7 @@ for(k = 0; k <produitEnregistreDanslocalStorage.length;k++){
                         <h2 class="h6 px-4 py-3 bg-secondary text-center"></h2>
                         <div class="h3  text-center py-3">Nom : ${produitEnregistreDanslocalStorage[k].produitName}</br>
                          Couleur : ${produitEnregistreDanslocalStorage[k].colors}</div>
-  <div class="h3 text-center ">Prix : ${produitEnregistreDanslocalStorage[k].price}€</br>Suprimer l'article</div></br>Quantité 1
+  <div class="h3 text-center ">Prix : ${produitEnregistreDanslocalStorage[k].price}€</br><button class="btn-supprimer"> Supprimer </button></div></br>Quantité 1
 
                     </div> 
                    </div> 
@@ -47,4 +49,36 @@ for(k = 0; k <produitEnregistreDanslocalStorage.length;k++){
 positionElement3.innerHTML = structureProduitPanier;
                   }
 
+}
+
+};
+
+renduHtml();
+//==========Fin de l'affichage des produits du panier ======
+
+// *********** Gestion du boutton supprimer l'article ******
+
+//Selection des références de tous les boutons btn-supprimer
+
+let btn_supprimer = document.querySelectorAll(".btn-supprimer");
+console.log(btn_supprimer);
+
+for (let l = 0; l < btn_supprimer.length; l++){
+  btn_supprimer[l].addEventListener("click" , (event) =>{
+    event.preventDefault();
+    console.log(event);
+    //selection de l'id du produit qui va être supprimer en cliquant sur le boutton
+    let name_selectionner_suppression = produitEnregistreDanslocalStorage[l].produitName ;
+    let color_selectionner_suppression = produitEnregistreDanslocalStorage[l].colors;
+    console.log("name_selectionner_suppression",name_selectionner_suppression);
+    
+//avec la methode filter on séléctionne les éléments à supprimer
+produitEnregistreDanslocalStorage = produitEnregistreDanslocalStorage.filter(word => word.produitName !== name_selectionner_suppression && word.color !== color_selectionner_suppression);
+console.log(produitEnregistreDanslocalStorage);
+
+//envoie de la  variable dans le local storage
+
+localStorage.setItem("produit", JSON.stringify(produitEnregistreDanslocalStorage));
+window.location.href = "panier.html";
+  })
 }

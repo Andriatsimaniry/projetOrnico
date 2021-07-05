@@ -125,9 +125,10 @@ let optionsProduit = {
     description : utileId.description,
     imageUrl :utileId.imageUrl,
     colors :choixForm,
-    price : utileId.price /100
+    price : utileId.price /100,
+    id : _id,
 }    
-    console.log(optionsProduit);
+    console.log(colors);
 
      // ==================================== Local Storage ====================================
 // ==========Stocker la récupération des valeurs du formulaire dans le local storage =====
