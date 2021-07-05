@@ -142,7 +142,7 @@ const positionElement4 = document.querySelector("#formulaire-commande-produit");
   const structureFormulaire = `
   <div class="row">
   <div class="col-lg-12 col-md-12"> 
-                <div id="formulaire-commande" class="h3 font-weight-semibold text-center py-3">Remplir le Formulaire Pour Commander 
+                <div id="formulaire-commande" class="h3 font-weight-semibold text-center py-3">Remplissez le Formulaire Pour Commander 
                 </div>
               </div>
 
@@ -183,13 +183,13 @@ const positionElement4 = document.querySelector("#formulaire-commande-produit");
                           <div class="form-group">
                             <label class="col-sm-4 control-label">Ville</label>
                             <div class="col-sm-8">
-                              <input id="ville" type="text" class="form-control" required>
+                              <input id="codepostal" type="text" class="form-control" required>
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="col-sm-4 control-label">Code Postal</label>
                             <div class="col-sm-8">
-                              <input id="codepostal" type="email" class="form-control">
+                              <input id="ville" type="text" class="form-control">
                             </div>
                           </div>
                           <div class="form-group">
@@ -216,37 +216,101 @@ console.log(btnEnvoyerFormulaire);
 btnEnvoyerFormulaire.addEventListener("click", (e)=>{
   e.preventDefault();
 
-  //Récupération des valeurs du formulaire pour les mettre dans le local storage
-localStorage.setItem("prenom",document.querySelector("#prenom").value);
-localStorage.setItem("nom",document.querySelector("#nom").value);
-localStorage.setItem("email",document.querySelector("#email").value);
-localStorage.setItem("telephone",document.querySelector("#telephone").value);
-localStorage.setItem("adresse",document.querySelector("#adresse").value);
-localStorage.setItem("ville",document.querySelector("#ville").value);
-localStorage.setItem("codepostal",document.querySelector("#codepostal").value);
+  //Récupération des valeurs du formulaire
+  const formulaireValues = {
+    prenom : document.querySelector("#prenom").value,
+    nom : document.querySelector("#nom").value,
+    email : document.querySelector("#email").value,
+    telephone : document.querySelector("#telephone").value,
+    adresse : document.querySelector("#adresse").value,
+    codepostal : document.querySelector("#codepostal").value, 
+    ville : document.querySelector("#ville").value,
 
-//Mettre les valeurs du formulaire dans un objet
+  }
+  console.log("formulaireValues",formulaireValues);
 
-const formulaire = {
 
-  prenom:localStorage.getItem("prenom"),
-  nom:localStorage.getItem("nom"),
-  email:localStorage.getItem("email"),
-  telephone:localStorage.getItem("telephone"),
-  adresse:localStorage.getItem("adresse"),
-  ville:localStorage.getItem("ville"),
-  codepostal:localStorage.getItem("codepostal")
+// ======================= GESTION VALIDATION DU FORMULAIRE  ============
+const textAlert = (value) => {
+  return `${value}:chiffre et symbole ne sont pas autorisés \n Ne pas dépasser 20 caractères,minimum 3 caractères`
 }
-console.log(formulaire);
+
+
+const regPrenomNomVille = (value) => {
+  return /^[A-Za-z]{3,20}$/.test(value);
+}
+
+
+function prenomControle(){
+//controle dde la validité du  prénom
+const lePrenom = formulaireValues.prenom;
+if(regPrenomNomVille(lePrenom)){
+return true;
+}else{
+alert(textAlert("Prénom"));
+return false;
+}
+}
+
+function nomControle(){
+  //controle dde la validité du  nom
+  const lenom = formulaireValues.nom;
+  if(regPrenomNomVille(lenom)){
+  return true;
+  }else{
+  alert(textAlert("Nom"));
+  return false;
+  }
+  }
+
+if (prenomControle() && nomControle()){
+  //Mettre l'objet "formulaireValues" transformer en json dans localstorage
+  localStorage.setItem("formulaireValues",JSON.stringify(formulaireValues));
+}else{
+  alert ("Veuillez bien remplir le formulaire");
+};
+
+
+
+
+
+
+// ======================== FIN GESTION VALIDATION DU FORMULAIRE =========
+
+
+  
 
 //Mettre les valeurs du formulaire et les produits séléctionnés dans un objet é envoyer vers le serveur
 const tousEnvoyer = {
   produitEnregistreDanslocalStorage,
-  formulaire
+  formulaireValues
 }
-console.log(tousEnvoyer);
-
+console.log("tousEnvoyer",tousEnvoyer);
 })
+//prendre la clé dans le localStorage et la mettre dans une variable
+//pour récupérer les valeurs dans localstorage
+const dataLocalStorage = localStorage.getItem("formulaireValues");
+
+//convertir la chaine de caractère en objet javascript
+const dataLocalStorageObjet = JSON.parse(dataLocalStorage);
+
+//Fonction pour récuperer les valeurs si le localstorage est rempli
+
+
+function champInputLocalStorage(input) {
+  document.querySelector(`#${input}`).value = dataLocalStorageObjet[input];
+};
+champInputLocalStorage("prenom"); 
+champInputLocalStorage("nom"); 
+champInputLocalStorage("email"); 
+champInputLocalStorage("telephone"); 
+champInputLocalStorage("adresse"); 
+champInputLocalStorage("codepostal"); 
+champInputLocalStorage("ville"); 
+
+
+
+console.log(champInputLocalStorage);
 
 
 
