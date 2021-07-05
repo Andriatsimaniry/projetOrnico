@@ -82,3 +82,24 @@ localStorage.setItem("produit", JSON.stringify(produitEnregistreDanslocalStorage
 window.location.href = "panier.html";
   })
 }
+
+//**********Le bouton pour vider le panier*******
+
+//choisir l'element html pour  vider tous les panier
+const viderPanierElement = document.getElementById("vider-panier");
+console.log(viderPanierElement);
+
+// ********Suppression de la clé produit du local storage pour vider entierement le panier
+viderPanierElement.addEventListener("click",(e) =>{
+  e.preventDefault;
+
+  //.removeItem pour vider le local storage
+localStorage.removeItem("produit");
+// Alert "le panier a été vider "
+alert("Le panier a été vider");
+
+//rechargement de la page
+window.location.href ="panier.html";
+});
+
+// ================= Fin bouton pour vider le panier ================
