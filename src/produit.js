@@ -1,7 +1,7 @@
 //déclaration des variables et Mettre les données Teddy de l'Api dans des variables
 
 let produitName = "";
-let _id = "";
+let id = "";
 let description = "";
 let price = 0;
 let imageUrl = "";
@@ -15,7 +15,7 @@ const queryString_url_id = window.location.search;
 // Pour extraire juste l'id
 const urlSearchParams = new URLSearchParams(queryString_url_id);
 
-const id = urlSearchParams.get("id");
+id = urlSearchParams.get("id");
 
 
 
@@ -126,7 +126,7 @@ let optionsProduit = {
     imageUrl :utileId.imageUrl,
     colors :choixForm,
     price : utileId.price /100,
-    id : _id,
+    id : id,
 }    
     console.log(colors);
 

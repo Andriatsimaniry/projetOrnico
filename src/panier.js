@@ -167,7 +167,9 @@ function validateform(){
   
 //Mettre les valeurs du formulaire et les produits séléctionnés dans localStorage envoyer vers le serveur
   const tousEnvoyer = {
-    products,
+    products: products.map((produit) => {
+      return produit.id;
+    }),
     contact,
   };
   console.log("tousEnvoyer", tousEnvoyer);
@@ -181,23 +183,10 @@ function validateform(){
 	body: JSON.stringify(tousEnvoyer)
 });
 //Pour voir le resultat du serveur dans le console
-promise01.then(async(reponse) =>{
+promise01.then((reponse) =>{
   //si la promesse n'est pas resolu, si elle est rejetée - gestion des erreurs
-  try{
-    const contenu = await response.json();
-    console.log("contenu de reponse",contenu);
-
-    if(reponse.ok){
-      console.log(`Resulta de reponse.ok : ${response.ok}`);
-    }else{
-      console.log(`Réponse du serveur : ${response.statuts}`)
-      alert(`Prolème avec le serveur : erreur ${response.statuts}`)
-    }
-    }catch(e){
-      console.log("ERREUR qui vient du catch()");
-      console.log(e);
-      alert(`ERREUR qui vient du catch() $(e)`,e);
-    }
+  console.log('reponse', reponse.orderId);
+  
   }, (e) => { console.log('erreur', e)});
 }
 
