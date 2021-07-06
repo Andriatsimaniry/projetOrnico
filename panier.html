@@ -30,9 +30,57 @@
                                  </a>
                         </div>
                     </div>
-                
-          <div id="formulaire-commande-produit" class="container pb-5 mt-n2 mt-md-n3">                
-            
+          
+         <form  name="formulaireCommande" methode="post" onsubmit="return validateform()">
+          <div  class="container pb-5 mt-n2 mt-md-n3"> 
+            <div class="row">
+                <div class="col-lg-12 col-md-12"> 
+                              <div  class="h3 font-weight-semibold text-center py-3">Remplissez le Formulaire Pour Commander 
+                              </div>
+                            </div>
+              
+                              <div class="container pb-5 mt-n2 mt-md-n3">                
+                                  <div class="row">
+                                      <div class="col-lg-12 col-md-12">     
+                                  <div class="panel panel-default">
+                                        <div class="form-group">
+                                          <label class="col-sm-4 control-label">Nom</label>
+                                          <div class="col-sm-8">
+                                            <input id="nom" type="text" required name="nom" >
+                                          </div>
+                                        </div> 
+                                        <div class="form-group">
+                                          <label class="col-sm-12 control-label">Prénom</label>
+                                          <div class="col-sm-8">
+                                            <input id="prenom" type="text"  name="prenom" required minlength="3" >
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="col-sm-4 control-label">E-mail</label>
+                                          <div class="col-sm-8">
+                                            <input id="email" type="email" required name="email"  placeholder="Ex : lui@moi.fr" >
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="col-sm-4 control-label">Adresse</label>
+                                          <div class="col-sm-8">
+                                            <textarea  id="adresse" rows="2" name="adresse" required maxlength="140" ></textarea>
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="col-sm-4 control-label">Ville</label>
+                                          <div class="col-sm-8">
+                                            <input id="ville" type="text" required name="ville" >
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                          <div class="col-sm-sm-4 col-sm-2">
+                                          <button id = "envoyerFormulaire" type="submit" class="btn btn-primary">Commander</button>
+                                        </div>
+                                      </div>
+                              </div>
+                          </div>                   
+                        </form>
                 
     </div>
     
