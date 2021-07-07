@@ -50,7 +50,7 @@ console.log(positionElement2);
 const structureProduit2 = ` 
 <div class="row">
 <div class="col-xl-12 col-md-12">
-    <h2 class="h6 d-flex flex-wrap justify-content-between align-items-center px-4 py-3 bg-secondary"><a class="font-size-sm" href="panier.html"><span>Panier</span></a><a class="font-size-sm" href="index.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left" style="width: 1rem; height: 1rem;"><polyline points="15 18 9 12 15 6"></polyline></svg>Continuez votre Achat</a></h2>
+    <h2 class="h6 d-flex flex-wrap justify-content-between align-items-center px-3 py-4 bg-secondary"><a class="font-size-sm" href="panier.html"><span>Panier</span></a><a class="font-size-sm" href="index.html">Continuez votre Achat</a></h2>
     <!-- Item-->
     <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
         <div class="media d-block d-sm-flex text-center text-sm-left">

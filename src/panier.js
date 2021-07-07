@@ -1,3 +1,6 @@
+
+// JSON.parse c'est pour convertir les données au format JSON qui sont dans le localstorage en objet javascript
+
 let products = JSON.parse(
   localStorage.getItem("produit")
 );
@@ -5,13 +8,10 @@ console.log(
   "products ",
   products
 );
-// JSON.parse c'est pour convertir les données au format JSON qui sont dans le localstorage en objet javascript
-
-console.log(products);
 
 // Affichage des produits du panier
 
-// Séléction de la classe ou je vais injecter le code html
+// Séléction de la classe ou  injecter le code html
 const positionElement3 = document.querySelector("#container-produits-panier");
 console.log(positionElement3);
 
@@ -24,13 +24,13 @@ function renduHtml() {
   ) {
     const panierVide = `
   <div class="row">
-  <div class="col-xl-12 col-md-12">
-  <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
-  <div class = "container-panier-vide">
-  <h2 class="h6 px-4 py-3 bg-secondary text-center">Le Panier est vide</h2>
-  </div>
-  </div>
-</div>
+    <div class="col-xl-12 col-md-12">
+      <div class="d-sm-flex justify-content-center my-4 pb-4 border-bottom">
+        <div class = "container-panier-vide">
+        <h2 class="h6 px-4 py-3 bg-secondary text-center">Le Panier est vide</h2>
+        </div>
+      </div>
+    </div>
   </div>
     `;
     positionElement3.innerHTML = panierVide;
@@ -43,15 +43,35 @@ function renduHtml() {
       structureProduitPanier =
         structureProduitPanier +
         `
-  <div class="container-recapitulatif">
-                        <h2 class="h6 px-4 py-3 bg-secondary text-center"></h2>
-                        <div class="h3  text-center py-3">Nom : ${products[k].produitName}</br>
-                         Couleur : ${products[k].colors}</div>
-  <div class="h3 text-center ">Prix : ${products[k].price}€</br><button class="btn-supprimer"> Supprimer </button></div></br>Quantité 1
+<div class="container-recapitulatif">
 
-                    </div> 
-                   </div> 
-                    `;
+    
+    <h2 class="h6 d-flex flex-wrap justify-content-between align-items-center px-12 py-2 bg-secondary">
+
+      <div class="p-2"> Nom : ${products[k].produitName}</div>  
+      <div class="p-2"> Couleur : ${products[k].colors}</div> 
+      <div class="p-2"> Prix : ${products[k].price}€</div>
+      <div class="p-2"><button class="btn-supprimer"> Supprimer </button></div></h2>
+    </div>
+  </div>
+  </div>   
+  `;
+
+  
+
+
+{
+  /* <div class="card text-center">
+  <div class="d-flex flex-row">
+  <div class="h3  text-center py-3">Nom : ${products[k].produitName}</div> 
+      <div class="h3 text-center ">Couleur : ${products[k].colors}</div> 
+      <div class="h3 text-center ">Prix : ${products[k].price}€</div>
+  </div> 
+      <div class="d-sm-flex justify-content-center my-4 pb-4 border-bottom">     
+        <div><button class="btn-supprimer"> Supprimer </button></div>                    
+      </div>  */}
+
+
       if (k == products.length) {
       }
       // Injection html dans la page panier
@@ -74,6 +94,7 @@ for (let l = 0; l < btn_supprimer.length; l++) {
   btn_supprimer[l].addEventListener("click", (event) => {
     event.preventDefault();
     console.log(event);
+   
     //selection de l'id du produit qui va être supprimer en cliquant sur le boutton
     let name_selectionner_suppression =
       products[l].produitName;
@@ -112,6 +133,7 @@ viderPanierElement.addEventListener("click", (e) => {
 
   //.removeItem pour vider le local storage
   localStorage.removeItem("produit");
+  
   // Alert "le panier a été vider "
   alert("Le panier a été vider");
 
@@ -161,20 +183,24 @@ function validateform(){
   }
   console.log(contact);
   
-  //Mettre l'objet "formulaireValues" transformer en json dans localstorage
+  //Mettre l'objet "contact" transformer en json dans localstorage
     localStorage.setItem("contact", JSON.stringify(contact));
+    localStorage.setItem("prixTotal", JSON.stringify(prixTotal));
 
+    
   
 //Mettre les valeurs du formulaire et les produits séléctionnés dans localStorage envoyer vers le serveur
   const tousEnvoyer = {
     products: products.map((produit) => {
       return produit.id;
     }),
-    contact,
+    contact,prixTotal
   };
   console.log("tousEnvoyer", tousEnvoyer);
 
-  const promise01 = fetch("http://localhost:3000/api/teddies/order", {
+  //Envoyer vers le serveur le formulaire et les produits dans le panier
+  (async () => {
+  const promise01 = await fetch("http://localhost:3000/api/teddies/order", {
   method: "POST",
 	headers: { 
 'Accept': 'application/json', 
@@ -182,17 +208,21 @@ function validateform(){
 },
 	body: JSON.stringify(tousEnvoyer)
 });
-//Pour voir le resultat du serveur dans le console
-promise01.then((reponse) =>{
-  //si la promesse n'est pas resolu, si elle est rejetée - gestion des erreurs
-  console.log('reponse', reponse.orderId);
+const content = await promise01.json();
+console.log('content', content.orderId);
+
+localStorage.setItem("orderId", JSON.stringify(content.orderId));
+
+//Aller vers la page confirmation-commande
+window.location = "confirmation-commande.html";
   
-  }, (e) => { console.log('erreur', e)});
+})();
+
+  
 }
 
 
   // ======================== FIN GESTION VALIDATION DU FORMULAIRE =========
   
-  // Envoie de l'objet "tousEnvoyer" vers le serveur
 
   

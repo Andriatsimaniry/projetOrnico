@@ -51,8 +51,9 @@ function affichageProduits(utileTeddy){
 //<a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img src="${imageUrl[i]}" alt="Product"></a>
 structureTeddies = structureTeddies + ` 
 <div class="row">
-        <div class="col-xl-12 col-md-12">
+      <div class="col-xl-12 col-md-12">
         <h2 class="h6 d-flex flex-wrap justify-content-between align-items-center px-4 py-3 bg-secondary"><a class="font-size-sm" href="panier.html"><span>Panier</span></a>
+      </div>
             <!-- Item-->
             <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
                 <div class="media d-block d-sm-flex text-center text-sm-left">
@@ -64,19 +65,13 @@ structureTeddies = structureTeddies + `
                         <div class="font-size-lg text-primary pt-2">Prix : <span class="text-muted mr-2">${price[i]/100}€</span></div>
                     </div>
                 </div>
+            </div>    
                 <div class="pt-2 pt-sm-0 pl-sm-3 mx-auto mx-sm-0 text-center text-sm-left" style="max-width: 10rem;">
-                    
-                    </div>
                     <a href="./produit.html?id=${_id[i]}">
                     <button class="btn btn-outline-primary btn-sm btn-block mb-2" type="button">
-                       Choisir Une Option</button></a>
-                    
-                        
+                     Choisir Une Option</button></a>
                 </div>
-            </div>
-
-
-             
+  </div>           
       `;
   
   //injection html
