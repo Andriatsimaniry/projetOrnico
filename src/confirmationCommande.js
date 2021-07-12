@@ -31,3 +31,12 @@ function enleverCleLocalStorage(key){
 enleverCleLocalStorage("prixTotal");
 enleverCleLocalStorage("produit");
 enleverCleLocalStorage("orderId");
+//Remise à 0 nombreTotal
+localStorage.setItem("nombreTotal",0);
+//Récuperer le nombreTotal dans le localStorage
+let nombreTotal = localStorage.getItem("nombreTotal");
+console.log("nombreTotal",nombreTotal);
+//Choisir l'élément pour afficher le nombre total
+const affichageNombreTotal = document.getElementById("container-nombre-total");
+affichageNombreTotal.insertAdjacentHTML("afterbegin", nombreTotal);
+console.log("affichageNombreTotal",affichageNombreTotal);  

@@ -1,4 +1,9 @@
-body{margin-top:20px;}
+body{
+  margin:0;
+  padding: 0;
+    border-bottom: 1px dashed hsl(0, 59%, 68%);
+    background-color:rgb(248, 240, 240) ;
+}
 .cart-item-thumb {
     display: block;
     width: 10rem
@@ -6,7 +11,12 @@ body{margin-top:20px;}
 a {
     text-decoration: none !important;
 }
-
+.btn-outline-primary, .btn-outline-primary:hover, .btn-outline-primary:active, .btn-outline-primary:visited{
+  background-color:rgb(245, 243, 245) !important;
+}
+.btn-outline-primary:hover{
+  color: #ff33ff;
+}
 .cart-item-thumb>img {
     display: block;
     width: 100%
@@ -74,7 +84,27 @@ form {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
   }
-  
+  .navbar-custom {
+    background-color: rgb(245, 229, 245);
+}
+
+/* change the brand and text color */
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+    color: black;
+}
+
+/* change the link color */
+.navbar-custom .navbar-nav .nav-link {
+    color: rgb(102, 93, 93);
+    font-weight: 700;
+}
+
+/* change the color of active or hovered links */
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:hover .nav-link {
+    color: #ff33ff;
+}
   input:invalid {
     box-shadow: 0 0 5px 1px red;
   }
@@ -86,4 +116,32 @@ form {
       font-weight: bold !important;
   }
   
+  .footer {
+    height: 50px;
+    left: 0;
+    bottom: 2rem;
+    width: 100%;
+    background-color: rgb(245, 229, 245);
+    color: white;
+    text-align: center;
+    
+ } 
+ 
+  input {
+    border-width: 3px;
+  }
+  input:optional {
+    border-color: #008000;
+  }
+ input:required {
+    border-color: #800000;
+  }  
+/* Panier  */
+
+
+
+
+
+
   
+

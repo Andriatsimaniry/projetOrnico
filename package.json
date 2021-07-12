@@ -1,7 +1,7 @@
 {
   "name": "projetornico",
   "version": "1.0.0",
-  "description": "",
+  "description": "https://andriatsimaniry.github.io/projetOrnico/",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,9 +11,24 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "jasmine": "^3.8.0",
+    "jasmine-browser-runner": "^0.6.0",
+    "mocha": "^9.0.2",
     "webpack": "^5.41.1",
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2",
     "webpack-serve": "^4.0.0"
-  }
+  },
+  "dependencies": {},
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Andriatsimaniry/projetOrnico.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Andriatsimaniry/projetOrnico/issues"
+  },
+  "homepage": "https://github.com/Andriatsimaniry/projetOrnico#readme"
 }
