@@ -8,11 +8,12 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet"  type="text/css" href="./css/style.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+    <link rel="shortcut icon" type="image/png" href="./favicon.ico"/>    
 </head>
 <header>              
   <nav class="navbar navbar-expand-sm navbar-custom">
-    <img src="./Logo.png" height="50" alt="Orinco logo">
+    <img src="./Logo.png" height="70" alt="Orinco logo">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCustom">
         <i class="fa fa-bars fa-lg py-1 text-white"></i>
       </button>
@@ -25,7 +26,7 @@
             </li>
             <li class="nav-item">
               <a href="./panier.html" id="container-nombre-total" class="nav-link navbar-link-2 waves-effect">                       
-                <i class="fa fa-shopping-cart"  style="font-size:24px;color:rgb(226, 144, 226)"></i></a>                      
+                <i class="fa fa-shopping-cart"  style="font-size:30px;color:rgb(226, 116, 226)"></i></a>                      
             </li>    
           </ul>
         </div> 
@@ -81,13 +82,19 @@
                                         <div class="form-group">
                                           <label class="col-sm-4 control-label">E-mail</label>
                                           <div class="col-sm-12">
-                                            <input id="email" type="email" required name="email"  placeholder="Ex : lui@moi.fr" >
+                                            <input id="email" type="email" required name="email"  pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,63}$" >
                                           </div>
                                         </div>
                                         <div class="form-group">
                                           <label class="col-sm-4 control-label">Adresse</label>
                                           <div class="col-sm-12">
                                             <textarea  id="adresse" rows="2" name="adresse" required maxlength="140" ></textarea>
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="col-sm-4 control-label">Code Postal</label>
+                                          <div class="col-sm-12">
+                                            <input id="codePostal" type="text"  name="codepostal" pattern="[0-9]{5}"  required >
                                           </div>
                                         </div>
                                         <div class="form-group">
@@ -109,7 +116,7 @@
                         <!-- Copyright -->
                         <div class="text-center p-3" style="background-color: rgb(245, 229, 245);">
                           © 2021 Copyright:
-                          <a class="text-dark">Orinoco</a>
+                          <a class="text-dark">Orinoco Vente Ours en Peluche</a>
                         </div>
                         <!-- Copyright -->
                     </footer>

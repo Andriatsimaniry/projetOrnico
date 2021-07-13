@@ -94,6 +94,8 @@ viderPanierElement.addEventListener("click", (e) => {
   e.preventDefault;
   //.removeItem pour vider le local storage
   localStorage.removeItem("produit");
+  //Mettre à jour le nombreTotal dans localStorage
+  localStorage.setItem("nombreTotal",0);
   // Alert "le panier a été vider "
   alert("Le panier a été vider");
   //rechargement de la page
