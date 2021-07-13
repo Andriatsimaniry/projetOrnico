@@ -140,6 +140,9 @@ console.log("affichagePrixHtml",affichagePrixHtml);
 //Choisir l'élément pour afficher le nombre total
 const affichageNombreTotal = document.getElementById("container-nombre-total");
 affichageNombreTotal.insertAdjacentHTML("afterbegin", nombreTotal);
+if (nombreTotal == null){
+  nombreTotal = 0 ;
+}
 console.log("affichageNombreTotal",affichageNombreTotal);
 
 // ================================= FIN MONTANT TOTAL PANIER ==============

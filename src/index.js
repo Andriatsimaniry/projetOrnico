@@ -68,6 +68,10 @@ let nombreTotal = localStorage.getItem("nombreTotal");
 console.log("nombreTotal",nombreTotal);
 //Choisir l'élément pour afficher le nombre total
 const affichageNombreTotal = document.getElementById("container-nombre-total");
+if (nombreTotal == null){
+  nombreTotal = 0 ;
+  
+}
 affichageNombreTotal.insertAdjacentHTML("afterbegin", nombreTotal);
 console.log("affichageNombreTotal",affichageNombreTotal);  
 
