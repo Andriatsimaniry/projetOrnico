@@ -1,3 +1,6 @@
-# projetOrnico
+# projetOrinoco
 
-https://andriatsimaniry.github.io/projetOrnico/
+Création un site e_commerce
+
+Vente Ours en Peluche
+
