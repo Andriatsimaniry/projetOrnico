@@ -36,12 +36,12 @@ function renduHtml() {
         structureProduitPanier +
         `
 <div class="container-recapitulatif">
-   <h2 class="h6 d-flex flex-wrap justify-content-between align-items-center px-12 py-2 bg-secondary">
-     <div class="p-2"> Nom : ${products[k].produitName}</div>  
-      <div class="p-2"> Couleur : ${products[k].colors}</div> 
-      <div class="p-2"> Prix : ${products[k].price}€</div>
-      <div class="p-2"> Quantité : ${products[k].quantite}</div>
-      <div class="p-2"><button class="btn-supprimer"> Supprimer </button></div></h2>
+   <h2 class="h6 d-flex flex-wrap justify-content-around align-items-center px-12 py-2 bg-secondary">
+     <div class="p-4"> Nom : ${products[k].produitName}</div>  
+      <div class="p-4"> Couleur : ${products[k].colors}</div> 
+      <div class="p-4"> Prix : ${products[k].price}€</div>
+      <div class="p-4"> Quantité : ${products[k].quantite}</div>
+      <div class="p-4"><button class="btn-supprimer"> Supprimer </button></div></h2>
     </div>
   </div>
   </div>   

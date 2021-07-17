@@ -95,9 +95,6 @@ event.preventDefault();
 const choixForm = idForm.value; 
 //Mettre la quantité dans une variable
 const choixQuantite = positionElementQuantite.value;
-//Nombre totale de produit dans le panier
-
-
 //Récupération des valeurs du formulaire
 let optionsProduit = {
     produitName : utileId.name,
@@ -113,7 +110,7 @@ console.log(optionsProduit);
 // ==========Stocker la récupération des valeurs du formulaire dans le local storage ===== 
 // ====== Déclaration de la variable "produitEnregistreDanslocalStorage" ===========
 let produitEnregistreDanslocalStorage = JSON.parse(localStorage.getItem("produit"));
-// JSON.parse c'est pour convertir les données au format JSON qui sont dans le localstorage en objet javascript
+// JSON.parse c'est pour convertir les données au format JSON en objet javascript qui sont dans le localstorage
 console.log(produitEnregistreDanslocalStorage);
 // Fonction fenêtre pop up
 const popupConfirmation = () =>{

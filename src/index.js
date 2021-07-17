@@ -17,6 +17,7 @@ let imageUrl = [];
 let structureTeddies = "";
   //selection élément du Dom
   const positionElement = document.querySelector("#teddie");
+  console.log(positionElement);
   //La boucle pour afficher tous les objets dans la page web
   for (i = 0; i < utileTeddy.length; i++) {
     utileTeddy.forEach((element,i) => {
