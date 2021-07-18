@@ -5,8 +5,10 @@ const Promise1 = fetch("http://localhost:3000/api/teddies");
     try{
     const utileTeddy = await response.json();  
     console.log (utileTeddy);       
-// fonction qui va afficher les produits dans la page web automatiquement
+
+    // fonction qui va afficher les produits dans la page web automatiquement
 function affichageProduits(utileTeddy){
+ 
   //déclaration des variables et Mettre les données Teddy de l'Api dans des variables
 let i = [];
 let name = [];
@@ -15,9 +17,11 @@ let description = [];
 let price = [];
 let imageUrl = [];
 let structureTeddies = "";
-  //selection élément du Dom
+ 
+//selection élément du Dom
   const positionElement = document.querySelector("#teddie");
   console.log(positionElement);
+ 
   //La boucle pour afficher tous les objets dans la page web
   for (i = 0; i < utileTeddy.length; i++) {
     utileTeddy.forEach((element,i) => {
@@ -27,7 +31,8 @@ let structureTeddies = "";
       price [i] = element.price;
       imageUrl [i] = element.imageUrl;    
     });  
-//Afficher tous les objets sur la page web
+
+    //Afficher tous les objets sur la page web
 structureTeddies = structureTeddies + ` 
 <div class="row">
       <div class="col-xl-12 col-md-12">
@@ -51,7 +56,8 @@ structureTeddies = structureTeddies + `
         </div>        
       </div>               
       `;  
-  //injection html
+  
+      //injection html
   positionElement.innerHTML = structureTeddies;  
   }
 }
@@ -67,6 +73,7 @@ affichageProduits(utileTeddy);
 //Récuperer le nombreTotal dans le localStorage
 let nombreTotal = localStorage.getItem("nombreTotal");
 console.log("nombreTotal",nombreTotal);
+
 //Choisir l'élément pour afficher le nombre total
 const affichageNombreTotal = document.getElementById("container-nombre-total");
 if (nombreTotal == null){

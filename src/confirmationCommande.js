@@ -5,6 +5,7 @@ console.log(`responseId : ${responseId}`);
 //récupération du prix total de la commande
 const prixTotal = localStorage.getItem("prixTotal");
 console.log(`prixTotal : ${prixTotal}`);
+
 //La structure HTML de la page confirmationCommande
 const positionElement5 = document.querySelector("#container-recapitulatif-commande");
 const structureConfirmation = `
@@ -19,6 +20,7 @@ const structureConfirmation = `
     </div>
   </div>
 `;
+
 //Injection HTML
 positionElement5.insertAdjacentHTML("afterbegin",structureConfirmation);
 
@@ -31,5 +33,6 @@ function enleverCleLocalStorage(key){
 enleverCleLocalStorage("prixTotal");
 enleverCleLocalStorage("produit");
 enleverCleLocalStorage("orderId");
+
 //Remise à 0 nombreTotal
 localStorage.setItem("nombreTotal",0);

@@ -1,9 +1,11 @@
 //Récupération de la chaine de requêtte dans l'url
 const queryString_url_id = window.location.search;
+
 // Pour extraire juste l'id
 const urlSearchParams = new URLSearchParams(queryString_url_id);
 id = urlSearchParams.get("id");
 console.log(id);
+
 //Récupération des valeurs d'un id
 const Promise2 = fetch("http://localhost:3000/api/teddies/"+id); 
   Promise2.then(async(response) => {
@@ -11,15 +13,18 @@ const Promise2 = fetch("http://localhost:3000/api/teddies/"+id);
    try{
     const utileId = await response.json();  
     console.log(utileId);
-//Déclaration  des valeurs  id 
+
+    //Déclaration  des valeurs  id 
  produitName = utileId? utileId.name:"";
  description = utileId? utileId.description:"";
  imageUrl = utileId? utileId.imageUrl:"";
  price = utileId? utileId.price:"";
  colors = utileId? utileId.colors:[""];
+
  //selection de la classe pour injecter le code dans produit.html
 const positionElement2 = document.querySelector(".container-page-teddies");
 console.log(positionElement2);
+
 //la structure html pour l'affichage du produit séléctionné
 const structureProduit2 = ` 
 <div class="col-xl-12 col-md-12">
@@ -57,19 +62,23 @@ const structureProduit2 = `
         </div>
 </div>            
  `;
-//injection  dans la page produit.html
+
+ //injection  dans la page produit.html
 positionElement2.innerHTML = structureProduit2;
 let structureOptions = [];
+
 //La boucle for pour afficher toutes les options de couleur
 for (let j = 0; j < colors.length; j++){
     structureOptions = structureOptions + `    
     <option value="${colors[j]}">${colors[j]}</option>                            
     `;
 }
+
 //injection  dans la page produit.html pour le choix de couleur dans le formulaire
 const positionChoixCouleur = document.querySelector("#inlineFormCustomSelect"); 
  positionChoixCouleur.innerHTML = structureOptions;
 console.log(positionChoixCouleur.innerHTML);
+
 //Choisir la quantité de produit
 const structureQuantite =`
 <option value = "1">1</option>
@@ -77,24 +86,32 @@ const structureQuantite =`
 <option value = "3">3</option>
 <option value = "4">4</option>
 `;
+
 //Afficher les Qantités dans le formulaire
 const positionElementQuantite = document.querySelector("#quantiteProduit");
 positionElementQuantite.innerHTML = structureQuantite;
-// =================== La Gestion du panier =======================
+
+// *************************** La Gestion du panier ****************************
+
 // La récupération des données séléctionnées par l'utilisateur et envoi du panier
 //Séléction de l'id du formulaire
 const idForm = document.querySelector("#inlineFormCustomSelect ");
 console.log(idForm);
+
 //Séléction du botton Ajouter au Panier
 const btn_envoyerPanier = document.querySelector(".btn-outline-success");
 console.log( btn_envoyerPanier );
+
 //Ecouter le botton et envoyer le Panier
 btn_envoyerPanier.addEventListener("click",(event) =>{
 event.preventDefault();
+
 //Mettre le choix de l'utilisateur dans une variable
 const choixForm = idForm.value; 
+
 //Mettre la quantité dans une variable
 const choixQuantite = positionElementQuantite.value;
+
 //Récupération des valeurs du formulaire
 let optionsProduit = {
     produitName : utileId.name,
@@ -106,12 +123,17 @@ let optionsProduit = {
     quantite:choixQuantite,
 } ;
 console.log(optionsProduit);   
-     // ==================================== Local Storage ====================================
+    
+// ************************* Local Storage *****************************************
+
 // ==========Stocker la récupération des valeurs du formulaire dans le local storage ===== 
+
 // ====== Déclaration de la variable "produitEnregistreDanslocalStorage" ===========
 let produitEnregistreDanslocalStorage = JSON.parse(localStorage.getItem("produit"));
+
 // JSON.parse c'est pour convertir les données au format JSON en objet javascript qui sont dans le localstorage
 console.log(produitEnregistreDanslocalStorage);
+
 // Fonction fenêtre pop up
 const popupConfirmation = () =>{
     if(window.confirm(`${utileId.name} ,Couleur ${choixForm} a été bien ajouter au panier
@@ -121,6 +143,7 @@ consulter le panier OK ou revenir à l'acceuil ANNULER`)){
     window.location.href = "index.html";
     }
 }
+
 // s'il a déjà  des produits enregistré dans le local storage
 if(produitEnregistreDanslocalStorage){
     produitEnregistreDanslocalStorage.push(optionsProduit);
@@ -146,12 +169,14 @@ else{
 
 .catch((erreur) => 
       console.log(erreur));
+
 //Récuperer le nombreTotal dans le localStorage
 let nombreTotal = localStorage.getItem("nombreTotal");
 if (nombreTotal == null){
     nombreTotal = 0 ;
 }
 console.log("nombreTotal",nombreTotal);
+
 //Choisir l'élément pour afficher le nombre total
 const affichageNombreTotal = document.getElementById("container-nombre-total");
 affichageNombreTotal.insertAdjacentHTML("afterbegin", nombreTotal);
