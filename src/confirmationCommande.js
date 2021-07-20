@@ -1,14 +1,16 @@
 //Récupération de l'id de la commande (provenant du serveur) dans le local storage
 const responseId = localStorage.getItem("orderId");
-  console.log(`responseId : ${responseId}`);
+console.log(`responseId : ${responseId}`);
 
 //récupération du prix total de la commande
 const prixTotal = localStorage.getItem("prixTotal");
-  console.log(`prixTotal : ${prixTotal}`);
+console.log(`prixTotal : ${prixTotal}`);
 
 //La structure HTML de la page confirmationCommande
-const positionElement5 = document.querySelector("#container-recapitulatif-commande");
-  const structureConfirmation = `
+const positionElement5 = document.querySelector(
+  "#container-recapitulatif-commande"
+);
+const structureConfirmation = `
     <div class="card-body">
       <p class="gras" >Merci pour votre Commande</p>
       <p>Votre Commande numéro :  <span class="gras">${responseId}</span>  a bien été prise en compte</p>
@@ -19,17 +21,15 @@ const positionElement5 = document.querySelector("#container-recapitulatif-comman
 `;
 
 //Injection HTML
-positionElement5.insertAdjacentHTML("afterbegin",structureConfirmation);
-
+positionElement5.insertAdjacentHTML("afterbegin", structureConfirmation);
 
 //Effacer tout le local storage
-function enleverCleLocalStorage(key){
-    localStorage.removeItem(key);
-
-};
+function enleverCleLocalStorage(key) {
+  localStorage.removeItem(key);
+}
 enleverCleLocalStorage("prixTotal");
 enleverCleLocalStorage("produit");
 enleverCleLocalStorage("orderId");
 
 //Remise à 0 nombreTotal
-localStorage.setItem("nombreTotal",0);
+localStorage.setItem("nombreTotal", 0);
